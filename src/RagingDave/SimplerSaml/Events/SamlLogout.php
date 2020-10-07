@@ -6,21 +6,21 @@ use Synwork\User;
 
 class SamlLogout
 {
-	use SerializesModels;
+    use SerializesModels;
 
-	/**
-	 * @var User
-	 */
-	private $user;
+    /**
+     * @var User
+     */
+    private $user;
 
-	/**
-	 * Create a new event instance.
-	 *
-	 * @param User $user
-	 * @return \RagingDave\SimplerSaml\Events\SamlLogout
-	 */
-	public function __construct(User $user)
-	{
-		$this->user = $user;
-	}
+    /**
+     * Create a new event instance.
+     *
+     * @param User $user
+     * @return \RagingDave\SimplerSaml\Events\SamlLogout
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 }
