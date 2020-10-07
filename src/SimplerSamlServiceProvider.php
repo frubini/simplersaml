@@ -25,7 +25,7 @@ class SimplerSamlServiceProvider extends ServiceProvider
         
         // Handle Config files
         $this->mergeConfigFrom(
-            __DIR__. '/../../config/simplersaml.php',
+            __DIR__. '/config/simplersaml.php',
             'simplersaml'
         );
 
@@ -45,14 +45,14 @@ class SimplerSamlServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../../config/simplersaml.php' => config_path('simplersaml.php'),
+            __DIR__.'/config/simplersaml.php' => config_path('simplersaml.php'),
         ], 'config');
 
         // Only include routes if enabled in the config
         $config = app()['config'];
 
         if ($config->get('simplersaml.enableRoutes')) {
-            include __DIR__.'/../../routes.php';
+            include __DIR__.'/routes/routes.php';
         }
     }
 
