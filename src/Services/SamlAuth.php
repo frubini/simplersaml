@@ -1,4 +1,4 @@
-<?php namespace RagingDave\SimplerSaml\Services;
+<?php namespace SimplerSaml\Services;
 
 use SimpleSAML_Auth_Simple;
 
@@ -19,12 +19,12 @@ class SamlAuth
      *
      * Should be the only thing needed to override.
      *
-     * @return \RagingDave\SimplerSaml\Contracts\User
+     * @return \SimplerSaml\Contracts\User
      */
     public function user()
     {
         $attributes = $this->getAttributes();
-        $model = $this->config->get('simplersaml.model', 'RagingDave\SimplerSaml\User');
+        $model = $this->config->get('simplersaml.model', 'SimplerSaml\User');
         $user = new $model;
         $user->setRaw($attributes)->map($attributes);
         return $user;

@@ -1,6 +1,6 @@
-<?php namespace RagingDave\SimplerSaml\Events;
+<?php namespace SimplerSaml\Events;
 
-use RagingDave\SimplerSaml\Contracts\User;
+use SimplerSaml\Contracts\User;
 
 use Illuminate\Queue\SerializesModels;
 
@@ -17,7 +17,7 @@ class SamlLogin
      * Create a new event instance.
      *
      * @param User $user
-     * @return \RagingDave\SimplerSaml\Events\SamlLogin
+     * @return \SimplerSaml\Events\SamlLogin
      */
     public function __construct(User $user)
     {

@@ -1,17 +1,17 @@
-<?php namespace RagingDave\SimplerSaml\Http\Controllers;
+<?php namespace SimplerSaml\Http\Controllers;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Events\Dispatcher as Event;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use RagingDave\SimplerSaml\Events\SamlLogin;
-use RagingDave\SimplerSaml\Events\SamlLogout;
-use RagingDave\SimplerSaml\Services\SamlAuth;
+use SimplerSaml\Events\SamlLogin;
+use SimplerSaml\Events\SamlLogout;
+use SimplerSaml\Services\SamlAuth;
 
 /**
  * Class SamlController
  *
- * @package RagingDave\SimplerSaml\Http\Controllers
+ * @package SimplerSaml\Http\Controllers
  */
 class SamlController extends Controller
 {

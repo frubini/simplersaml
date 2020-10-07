@@ -1,9 +1,9 @@
 <?php
 
-namespace RagingDave\SimplerSaml;
+namespace SimplerSaml;
 
 use ArrayAccess;
-use RagingDave\SimplerSaml\Contracts\User as UserContract;
+use SimplerSaml\Contracts\User as UserContract;
 
 class User implements ArrayAccess, UserContract
 {

@@ -1,4 +1,4 @@
-<?php namespace RagingDave\SimplerSaml\Contracts;
+<?php namespace SimplerSaml\Contracts;
 
 interface User
 {
@@ -7,7 +7,7 @@ interface User
      * Basically just add the attributes this way to allow arrayAccess
      *
      * @param  array $user
-     * @return \RagingDave\SimplerSaml\User
+     * @return \SimplerSaml\User
      */
     public function setRaw(array $user);
 
@@ -15,7 +15,7 @@ interface User
      * Map the given array onto the user's properties.
      *
      * @param  array $attributes
-     * @return \RagingDave\SimplerSaml\User
+     * @return \SimplerSaml\User
      */
     public function map(array $attributes);
 }

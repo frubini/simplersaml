@@ -8,7 +8,7 @@ return [
     'idp' => 'https://openidp.feide.no',
 
     // User Model to use for easy saml attribute mapping
-    'model' => 'RagingDave\SimplerSaml\User',
+    'model' => 'SimplerSaml\User',
 
     // Enable the built in routes for saml authentication (default: true)
     'enableRoutes' => true,

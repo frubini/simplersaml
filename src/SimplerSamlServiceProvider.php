@@ -1,7 +1,7 @@
-<?php namespace RagingDave\SimplerSaml;
+<?php namespace SimplerSaml;
 
 use Illuminate\Support\ServiceProvider;
-use RagingDave\SimplerSaml\Services\SamlAuth;
+use SimplerSaml\Services\SamlAuth;
 
 class SimplerSamlServiceProvider extends ServiceProvider
 {
@@ -30,7 +30,7 @@ class SimplerSamlServiceProvider extends ServiceProvider
         );
 
         // Handle registering the main integration layer
-        $this->app->bind('RagingDave\SimplerSaml\Services\SamlAuth', function () {
+        $this->app->bind('SimplerSaml\Services\SamlAuth', function () {
             $config = app()['config'];
             $authSource = $config->get('simplersaml.sp');
             return new SamlAuth($config, new \SimpleSAML_Auth_Simple($authSource));

@@ -1,4 +1,4 @@
-<?php namespace RagingDave\SimplerSaml\Events;
+<?php namespace SimplerSaml\Events;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Queue\SerializesModels;
@@ -17,7 +17,7 @@ class SamlLogout
      * Create a new event instance.
      *
      * @param User $user
-     * @return \RagingDave\SimplerSaml\Events\SamlLogout
+     * @return \SimplerSaml\Events\SamlLogout
      */
     public function __construct(User $user)
     {
