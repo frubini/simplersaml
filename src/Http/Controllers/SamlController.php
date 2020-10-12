@@ -1,7 +1,7 @@
 <?php namespace SimplerSaml\Http\Controllers;
 
 use Illuminate\Contracts\Config\Repository as Config;
-use Illuminate\Contracts\Events\Dispatcher as Event;
+use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use SimplerSaml\Events\SamlLogin;
@@ -29,38 +29,45 @@ class SamlController extends Controller
 
     /**
      * @param Config $config
-     * @param Event $event
+     * @param EventDispatcher $event
      * @param SamlAuth $sa
      */
-    public function __construct(Config $config, Event $event, SamlAuth $sa)
+    public function __construct(Config $config, EventDispatcher $event, SamlAuth $sa)
     {
         $this->sa = $sa;
         $this->event = $event;
         $this->config = $config;
     }
 
-    public function getLogin()
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function login()
     {
         $samlIdp = $this->config->get('simplersaml.idp');
         $this->sa->requireAuth(array(
             'saml:idp' => $samlIdp,
         ));
 
-        $this->event->fire(new SamlLogin($this->sa->user()));
+        $this->event->dispatch(new SamlLogin($this->sa->user()));
 
         $loginRedirect = $this->config->get('simplersaml.loginRedirect');
 
         return redirect()->to($loginRedirect);
     }
 
-    public function getLogout(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout(Request $request)
     {
         if ($this->sa->isAuthenticated()) {
             $this->sa->logout();
         }
 
         // Pass through the currently authenticated user
-        $this->event->fire(new SamlLogout($request->user()));
+        $this->event->dispatch(new SamlLogout($request->user()));
 
         $logoutRedirect = $this->config->get('simplersaml.logoutRedirect');
 

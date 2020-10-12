@@ -1,6 +1,6 @@
 <?php namespace SimplerSaml\Services;
 
-use SimpleSAML_Auth_Simple;
+use SimpleSAML\Auth\Simple;
 
 class SamlAuth
 {
@@ -8,7 +8,7 @@ class SamlAuth
 
     protected $sa;
 
-    public function __construct($config, SimpleSAML_Auth_Simple $sa)
+    public function __construct($config, Simple $sa)
     {
         $this->config = $config;
         $this->sa = $sa;
@@ -25,6 +25,7 @@ class SamlAuth
     {
         $attributes = $this->getAttributes();
         $model = $this->config->get('simplersaml.model', 'SimplerSaml\User');
+        /** @var \SimplerSaml\User $user */
         $user = new $model;
         $user->setRaw($attributes)->map($attributes);
         return $user;
