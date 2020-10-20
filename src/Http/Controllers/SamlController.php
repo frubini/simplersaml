@@ -56,6 +56,7 @@ class SamlController extends Controller
         return redirect()->to($loginRedirect);
     }
 
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse

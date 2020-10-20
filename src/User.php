@@ -3,6 +3,7 @@
 namespace SimplerSaml;
 
 use ArrayAccess;
+use phpDocumentor\Reflection\Types\Array_;
 use SimplerSaml\Contracts\User as UserContract;
 
 class User implements ArrayAccess, UserContract
@@ -15,11 +16,18 @@ class User implements ArrayAccess, UserContract
     protected $property_map = [];
 
     /**
-     * Holds the raw user data
+     * Holds the remapped user data
      *
      * @var array
      */
     protected $user;
+
+    /**
+     * Holds the raw user data
+     *
+     * @var array
+     */
+    protected $raw_user;
 
     /**
      * Set the raw user array from the provider.
@@ -59,7 +67,7 @@ class User implements ArrayAccess, UserContract
             }
 
             // Make sure we don't lose any information
-            $this->user["raw_$key"] = $value;
+            $this->user[$key] = $value;
 
             // If the key is present in the property_map use the mapped value
             if (isset($this->property_map[$key])) {

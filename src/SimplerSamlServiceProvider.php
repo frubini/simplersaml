@@ -21,24 +21,31 @@ class SimplerSamlServiceProvider extends ServiceProvider
     public function register()
     {
         $config = app()['config'];
-        require_once($config->get('simplersaml.spPath') .'/lib/_autoload.php');
-        
+//        require_once($config->get('simplersaml.spPath') .'/lib/_autoload.php');
+
         // Handle Config files
         $this->mergeConfigFrom(
             __DIR__. '/config/simplersaml.php',
             'simplersaml'
         );
 
+        // Required if used as an vendor class
+        // TODO add this to SamlAuth
+        $config->get('simplersaml.simpleSamlConfig');
+        \SimpleSAML\Configuration::setConfigDir('/var/www/html/simplesamlphp/config');
+
         // Handle registering the main integration layer
         $this->app->bind('SimplerSaml\Services\SamlAuth', function () {
             $config = app()['config'];
             $authSource = $config->get('simplersaml.sp');
-            return new SamlAuth($config, new \SimpleSAML_Auth_Simple($authSource));
+            //return new SamlAuth($config, new \SimpleSAML_Auth_Simple($authSource));
+            return new SamlAuth($config, new \SimpleSAML\Auth\Simple($authSource));
         });
     }
 
     /**
      * Boots the service.
+     * - Add configuration and Routes
      *
      * @return void
      */
@@ -52,7 +59,7 @@ class SimplerSamlServiceProvider extends ServiceProvider
         $config = app()['config'];
 
         if ($config->get('simplersaml.enableRoutes')) {
-            include __DIR__.'/routes/routes.php';
+            $this->loadRoutesFrom( __DIR__.'/routes/routes.php');
         }
     }
 
