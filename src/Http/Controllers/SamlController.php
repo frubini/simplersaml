@@ -63,8 +63,12 @@ class SamlController extends Controller
      */
     public function logout(Request $request)
     {
+        $returnTo = $this->config->get('simplersaml.returnTo');
+
         if ($this->sa->isAuthenticated()) {
-            $this->sa->logout();
+            $this->sa->logout(
+                filter_var($returnTo, FILTER_VALIDATE_URL) ? ['ReturnTo' => $returnTo]: null
+            );
         }
 
         // Pass through the currently authenticated user

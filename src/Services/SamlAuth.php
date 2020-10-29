@@ -63,8 +63,8 @@ class SamlAuth
         return ! $this->sa->isAuthenticated();
     }
 
-    public function logout()
+    public function logout($params = null)
     {
-        $this->sa->logout();
+        $this->sa->logout($params);
     }
 }

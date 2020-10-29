@@ -21,4 +21,13 @@ return [
 
     // Location to redirect to after logout
     'logoutRedirect' => '/',
+
+    // Path to simplesaml installation
+    'spPath' => '/var/www/html/simplesamlphp',
+
+    // path to simplesaml configuration
+    'simpleSamlConfig' => '/var/www/html/simplesamlphp/config/config.php',
+
+    //path to redirect the user after login / logout
+    'returnTo' => ''
 ];
