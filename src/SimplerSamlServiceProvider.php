@@ -31,8 +31,8 @@ class SimplerSamlServiceProvider extends ServiceProvider
 
         // Required if used as an vendor class
         // TODO add this to SamlAuth
-        $configFile = $config->get('simplersaml.simpleSamlConfig');
-        \SimpleSAML\Configuration::setConfigDir($configFile);
+        $configDir = $config->get('simplersaml.simpleSamlConfigDir');
+        \SimpleSAML\Configuration::setConfigDir($configDir);
 
         // Handle registering the main integration layer
         $this->app->bind('SimplerSaml\Services\SamlAuth', function () {

@@ -26,7 +26,7 @@ return [
     'spPath' => '/var/www/html/simplesamlphp',
 
     // path to simplesaml configuration
-    'simpleSamlConfig' => '/var/www/html/simplesamlphp/config/config.php',
+    'simpleSamlConfigDir' => '/var/www/html/simplesamlphp/config',
 
     //path to redirect the user after login / logout
     'returnTo' => ''

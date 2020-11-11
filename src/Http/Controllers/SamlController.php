@@ -72,7 +72,9 @@ class SamlController extends Controller
         }
 
         // Pass through the currently authenticated user
-        $this->event->dispatch(new SamlLogout($request->user()));
+        if($request->user()) {
+            $this->event->dispatch(new SamlLogout($request->user()));
+        }
 
         $logoutRedirect = $this->config->get('simplersaml.logoutRedirect');
 
