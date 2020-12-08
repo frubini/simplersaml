@@ -23,18 +23,18 @@ class SamlController extends Controller
     /**
      * @var SamlAuth
      */
-    protected $sa;
+    protected $samlAuth;
 
     protected $event;
 
     /**
      * @param Config $config
      * @param EventDispatcher $event
-     * @param SamlAuth $sa
+     * @param SamlAuth $samlAuth
      */
-    public function __construct(Config $config, EventDispatcher $event, SamlAuth $sa)
+    public function __construct(Config $config, EventDispatcher $event, SamlAuth $samlAuth)
     {
-        $this->sa = $sa;
+        $this->samlAuth = $samlAuth;
         $this->event = $event;
         $this->config = $config;
     }
@@ -45,11 +45,11 @@ class SamlController extends Controller
     public function login()
     {
         $samlIdp = $this->config->get('simplersaml.idp');
-        $this->sa->requireAuth(array(
+        $this->samlAuth->requireAuth(array(
             'saml:idp' => $samlIdp,
         ));
 
-        $this->event->dispatch(new SamlLogin($this->sa->user()));
+        $this->event->dispatch(new SamlLogin($this->samlAuth->user()));
 
         $loginRedirect = $this->config->get('simplersaml.loginRedirect');
 
@@ -65,8 +65,8 @@ class SamlController extends Controller
     {
         $returnTo = $this->config->get('simplersaml.returnTo');
 
-        if ($this->sa->isAuthenticated()) {
-            $this->sa->logout(
+        if ($this->samlAuth->isAuthenticated()) {
+            $this->samlAuth->logout(
                 filter_var($returnTo, FILTER_VALIDATE_URL) ? ['ReturnTo' => $returnTo]: null
             );
         }

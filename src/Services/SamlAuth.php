@@ -1,4 +1,6 @@
-<?php namespace SimplerSaml\Services;
+<?php
+
+namespace SimplerSaml\Services;
 
 use SimpleSAML\Auth\Simple;
 
@@ -6,12 +8,12 @@ class SamlAuth
 {
     protected $config;
 
-    protected $sa;
+    protected $authSimple;
 
-    public function __construct($config, Simple $sa)
+    public function __construct($config, Simple $authSimple)
     {
         $this->config = $config;
-        $this->sa = $sa;
+        $this->authSimple = $authSimple;
     }
 
     /**
@@ -45,26 +47,26 @@ class SamlAuth
 
     public function requireAuth(array $options = [])
     {
-        $this->sa->requireAuth($options);
+        $this->authSimple->requireAuth($options);
     }
 
     public function getAttributes()
     {
-        return $this->sa->getAttributes();
+        return $this->authSimple->getAttributes();
     }
 
     public function isAuthenticated()
     {
-        return $this->sa->isAuthenticated();
+        return $this->authSimple->isAuthenticated();
     }
 
     public function isGuest()
     {
-        return ! $this->sa->isAuthenticated();
+        return ! $this->authSimple->isAuthenticated();
     }
 
     public function logout($params = null)
     {
-        $this->sa->logout($params);
+        $this->authSimple->logout($params);
     }
 }
