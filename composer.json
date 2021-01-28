@@ -7,10 +7,14 @@
         {
             "name": "David Cox Jr.",
             "email": "davemc08@gmail.com"
+        },
+        {
+            "name": "Federico Rubini",
+            "email": "f.r.rubini@uu.nl"
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.3",
         "illuminate/support": "^7.0|^8.0"
     },
     "autoload": {

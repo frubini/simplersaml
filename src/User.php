@@ -67,13 +67,11 @@ class User implements ArrayAccess, UserContract
             }
 
             // Make sure we don't lose any information
-            $this->user[$key] = $value;
-
             // If the key is present in the property_map use the mapped value
             if (isset($this->property_map[$key])) {
                 $key = $this->property_map[$key];
-                $this->user[$key] = $value;
             }
+            $this->user[$key] = $value;
         }
 
         return $this;

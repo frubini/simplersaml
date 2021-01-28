@@ -1,8 +1,7 @@
 <?php namespace SimplerSaml\Events;
 
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Queue\SerializesModels;
-use Synwork\User;
+use App\Models\User;
 
 class SamlLogout
 {

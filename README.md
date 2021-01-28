@@ -10,15 +10,17 @@ Feel free to bring up shortcomings in issues/PR so I can improve this and make i
 
 Add the package to your composer.json:
 
-    composer require ragingdave/simplersaml:dev-master
+    composer require frubini/simplersaml:dev-master
 
 Add the service provider in `config/app.php`:
 
-    RagingDave\SimplerSaml\SimplerSamlServiceProvider::class,
+```php
+\SimplerSaml\SimplerSamlServiceProvider::class
+```
     
 (OPTIONALLY) Publish the config to make changes:
     
-    php artisan vendor:publish --provider="RagingDave/SimplerSaml/SimplerSamlServiceProvider" --tag="config"
+    php artisan vendor:publish --provider="SimplerSaml/SimplerSamlServiceProvider" --tag="config"
     
 ## Configuration
 This is pretty customizable from the start so if there is something missing chances are, I missed it, and you
@@ -50,8 +52,8 @@ RedirectIfAuthenticated.
 
 There are a few events that are fired from this package to hook into the login and logout functions of the saml flow.
 
-    RagingDave\SimplerSaml\Events\SamlLogin
-    RagingDave\SimplerSaml\Events\SamlLogout
+    SimplerSaml\Events\SamlLogin
+    SimplerSaml\Events\SamlLogout
 
 These can be listened for and acted upon to enable creating/logging in the saml user into a local laravel session to use
     
