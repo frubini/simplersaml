@@ -40,6 +40,8 @@ class SamlController extends Controller
         $this->samlAuth = $samlAuth;
         $this->event = $event;
         $this->config = $config;
+
+        $this->middleware('web');
     }
 
     /**
@@ -56,9 +58,11 @@ class SamlController extends Controller
         $this->event->dispatch(new SamlLogin($this->samlAuth->user()));
 
         $userSessionRedirect = $this->config->get('simplersaml.userSessionRedirect');
+        $samlUser = $this->samlAuth->user();
 
-        return redirect()->to($userSessionRedirect)->with('user', $this->samlAuth->user());
+        return redirect()->to($userSessionRedirect)->with('user', $samlUser);
     }
+
 
 
     /**
