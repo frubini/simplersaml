@@ -21,7 +21,6 @@ class SimplerSamlServiceProvider extends ServiceProvider
     public function register()
     {
         $config = app()['config'];
-//        require_once($config->get('simplersaml.spPath') .'/lib/_autoload.php');
 
         // Handle Config files
         $this->mergeConfigFrom(

@@ -8,19 +8,40 @@ Feel free to bring up shortcomings in issues/PR so I can improve this and make i
 
 ## Setup
 
-Add the package to your composer.json:
+###1. Add the package to your composer.json:
 
     composer require frubini/simplersaml:dev-master
 
-Add the service provider in `config/app.php`:
+###2. Configure Service provider
+Laravel registers the service provider automatically , otherwise add the service provider in `config/app.php`:
 
 ```php
 \SimplerSaml\SimplerSamlServiceProvider::class
 ```
     
-(OPTIONALLY) Publish the config to make changes:
+###3. Publish and adjust configuration
+Publish the config to make changes in your app, this will copy configuration ti your app: `config/simplersaml.php`
     
-    php artisan vendor:publish --provider="SimplerSaml/SimplerSamlServiceProvider" --tag="config"
+    php artisan vendor:publish
+
+###4. Add middelware
+Add the **saml** middelware to the app configuration `app/http/Kernel`
+
+```php 
+    protected $routeMiddleware = [
+      ...
+      'saml' => SimplerSaml\Http\Middleware\SimplerSamlAuthenticate::class,
+    ]
+```
+
+###5. Configure Routes
+Encapsulate all your routes in the saml middelware
+
+```php 
+Route::middleware(['saml'])->group(function () {
+   // your routes here 
+});
+```
     
 ## Configuration
 This is pretty customizable from the start so if there is something missing chances are, I missed it, and you
@@ -42,6 +63,13 @@ can help improve the package by telling me about it and I'll see what I can do (
  
 - Redirects (simplersaml.loginRedirect, simplersaml.logoutRedirect)
   - These determine the path to redirect to after login and logout (passed to redirect()->to())
+
+- Adjust logout Route in your views
+  - Remove /login /logout if not needed
+
+- Regenerate routes cache
+  - `php artisan route:clear`
+  - `php artisan route:cache`
 
 ## Usage
 
