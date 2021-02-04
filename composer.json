@@ -1,13 +1,9 @@
 {
-    "name": "frubini/simplersaml",
+    "name": "ubu-developers/simplersaml",
     "description": "Allows Simpler integration of SimpleSAML and Laravel.",
     "keywords": [ "laravel", "illuminate", "simplesaml", "saml" ],
     "license": "MIT",
     "authors": [
-        {
-            "name": "David Cox Jr.",
-            "email": "davemc08@gmail.com"
-        },
         {
             "name": "Federico Rubini",
             "email": "f.r.rubini@uu.nl"
