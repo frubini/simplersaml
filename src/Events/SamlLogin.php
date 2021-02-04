@@ -1,7 +1,6 @@
 <?php namespace SimplerSaml\Events;
 
 use SimplerSaml\Contracts\User;
-
 use Illuminate\Queue\SerializesModels;
 
 class SamlLogin
