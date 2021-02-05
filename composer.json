@@ -3,6 +3,7 @@
     "description": "Allows Simpler integration of SimpleSAML and Laravel.",
     "keywords": [ "laravel", "illuminate", "simplesaml", "saml" ],
     "license": "MIT",
+    "version": "v1.18.4.2",
     "authors": [
         {
             "name": "Federico Rubini",
