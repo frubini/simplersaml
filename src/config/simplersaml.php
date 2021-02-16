@@ -10,6 +10,9 @@ return [
     // User Model to use for easy saml attribute mapping
     'model' => 'SimplerSaml\User',
 
+    // Route used to create a Laravel session for the user
+    'userSessionRedirect' => '/saml/login/user',
+
     // Enable the built in routes for saml authentication (default: true)
     'enableRoutes' => true,
 
@@ -28,6 +31,4 @@ return [
     // path to simplesaml configuration
     'simpleSamlConfigDir' => '/var/www/html/simplesamlphp/config',
 
-    //path to redirect the user after login / logout
-    'returnTo' => ''
 ];
